@@ -21,3 +21,24 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 ### Getting ready
 Getting ready to Pokemon GO launch, it became obviously we need a source of info about pokemons. In order to do this, we've created a client for https://sw-api.starnavi.io
+
+On click of any "hero" from the list hero Node with films and ships data displayed on the page.
+
+### Project Screen Shot(s)
+
+
+### Installation and Setup Instructions
+
+Clone down this repository. You will need node and npm installed globally on your machine.
+
+Installation:
+
+npm install
+
+To Start Server:
+
+npm start
+
+To Visit App:
+
+http://localhost:3000
