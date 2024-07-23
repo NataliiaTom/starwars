@@ -35,9 +35,9 @@ Installation:
 
 npm install
 
-To Start Server:
+To Start Tests:
 
-npm start
+npm run test
 
 To Visit App:
 
