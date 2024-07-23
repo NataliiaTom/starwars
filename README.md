@@ -26,7 +26,7 @@ On click of any "hero" from the list hero Node with films and ships data display
 
 ### Project Screen Shot(s)
 
-
+ ![Image Alt](https://github.com/NataliiaTom/starwars/blob/main/Screenshot%202024-07-23%20at%2022.03.29.png?raw=true )
 ### Installation and Setup Instructions
 
 Clone down this repository. You will need node and npm installed globally on your machine.
