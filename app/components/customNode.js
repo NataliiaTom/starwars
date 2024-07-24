@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 
-function CustomNode({ data }) {
+function customNode({ data }) {
     return (
         <div className="px-0.5 py-2 shadow-md rounded-md bg-white border-2 border-stone-400">
             <div className="flex">
@@ -26,4 +26,4 @@ function CustomNode({ data }) {
     );
 }
 
-export default memo(CustomNode);
+export default memo(customNode);

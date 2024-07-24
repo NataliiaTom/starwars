@@ -12,8 +12,10 @@ export default function Home() {
 
   let { data } = getHeroes(`${page}`);////API data
 
+  let numberOfPagesPerURL = Math.ceil(data.count / 10)/////page size
+
   const handleNextClick = () => {///previous page method
-    if (page === 9) return
+    if (page === numberOfPagesPerURL) return
     setPage(page + 1)
   }
 
@@ -31,7 +33,7 @@ export default function Home() {
     <div data-testid="header">
       <div className=" flex items-center justify-center">
         <h2 className="text-2xl font-light text-black sm:text-4xl sm:leading-tight">
-          Choose your Starwar heroe
+          Choose your Starwar hero
         </h2>
       </div>
       <div className="flow-root" data-testid="heroes-list">

@@ -3,33 +3,48 @@ import {
 } from '@xyflow/react';
 import React from 'react';
 import '@xyflow/react/dist/style.css';
+import customNode from './customNode';
+
+const backStyle = {
+    backgroundColor: 'teal',
+};
+
+const nodeTypes = {
+    custom: customNode,
+};
+
+let getMooviesNode = (heroData) => heroData?.data?.films?.map((node, i) => {
+    ///movie node
+    return {
+        id: `moovies${i}`,
+        data: { label: `Film ${node}`, emoji: '📽' },
+        position: { x: i * 100, y: 100 },
+        type: 'custom',
+    }
+})
 
 
-import CustomNode from './CustomeNode';
+let getstarShipsNodes = (heroData) => heroData?.data?.starships?.map((ship, i) => {////ship node
+    return {
+        id: `starShips${i}`,
+        data: { label: `Ship ${ship} `, emoji: '🛰' },
+        position: { x: i * 100, y: 200 },
+        type: 'custom',
+    }
+})
 
-function Flow(heroData) {
-    const nodeTypes = {
-        custom: CustomNode,
-    };
+let getShipEdges = (filmNodesIDArray, shipsNodesIDArray) => filmNodesIDArray.map((node, i, array) => {
+    return { id: `${node}`, source: filmNodesIDArray[i], target: shipsNodesIDArray[i], animated: true }
+}).filter(element => element !== undefined)
 
-    let moovies = heroData.data.films.map((node, i) => {///movie node
-        return {
-            id: `moovies${i}`,
-            data: { label: `Film ${node}`, emoji: '📽' },
-            position: { x: i * 100, y: 100 },
-            type: 'custom',
-        }
-    })
+let getfilmsEdges = (filmNodesIDArray, firstNode) => filmNodesIDArray.map((node, i, array) => {
+    return { id: `${i}`, source: firstNode.id, target: node, animated: true }
+})
 
-    let starShips = heroData.data.starships.map((ship, i) => {////ship node
-        return {
-            id: `starShips${i}`,
-            data: { label: `Ship ${ship} `, emoji: '🛰' },
-            position: { x: i * 100, y: 200 },
-            type: 'custom',
-        }
-    })
+function flow(heroData) {
 
+    let moovies = getMooviesNode(heroData)
+    let starShips = getstarShipsNodes(heroData)
     let initNodes = [/////Hero node(first node)
         {
             id: `${heroData.data.id}`,
@@ -58,24 +73,14 @@ function Flow(heroData) {
         }
     })
 
-    let filmsEdges = filmNodesIDArray.map((node, i, array) => {
-        return { id: `${i}`, source: firstNode.id, target: node, animated: true }
-    })
-
-    let shipsEdges = filmNodesIDArray.map((node, i, array) => {
-        return { id: `${node}`, source: filmNodesIDArray[i], target: shipsNodesIDArray[i], animated: true }
-    }).filter(element => element !== undefined)
-
+    let filmsEdges = getfilmsEdges(filmNodesIDArray, firstNode)
+    let shipsEdges = getShipEdges(filmNodesIDArray, shipsNodesIDArray)
     let initEdges = filmsEdges.concat(shipsEdges)
-
-    const rfStyle = {
-        backgroundColor: 'teal',
-    };
 
     return (
         <div style={{ height: '100%' }} className=" flex items-center justify-center container " data-testid="hero-flow" >
             {heroData ?
-                <ReactFlow nodes={initNodes} edges={initEdges} nodeTypes={nodeTypes} fitView style={rfStyle}  >
+                <ReactFlow nodes={initNodes} edges={initEdges} nodeTypes={nodeTypes} fitView style={backStyle}  >
                     <Background />
                     <Controls />
                 </ReactFlow>
@@ -84,4 +89,4 @@ function Flow(heroData) {
     );
 }
 
-export default Flow;
+export default flow;
