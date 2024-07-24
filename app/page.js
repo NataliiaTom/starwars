@@ -1,5 +1,5 @@
 "use client"
-import { getHeroes } from './hooks/getHeroes'
+import { GetHeroes } from './hooks/getHeroes'
 import { useState } from 'react';
 import Flow from './components/nodes'
 import 'isomorphic-fetch';
@@ -10,7 +10,7 @@ export default function Home() {
   const [heroeVisible, setHeroeVisible] = useState(false)
   const [heroeData, setHeroeData] = useState()
 
-  let { data } = getHeroes(`${page}`);////API data
+  let { data } = GetHeroes(`${page}`);////API data
 
   let numberOfPagesPerURL = Math.ceil(data.count / 10)/////page size
 
